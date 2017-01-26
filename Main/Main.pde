@@ -7,6 +7,8 @@
    
 PShape gras;
 
+PImage sassy = loadImage("sassy1.png");
+
 color n = color(76, 14, 119);
 color d = color(45, 86, 233);
 
@@ -28,9 +30,9 @@ void setup()
 {
   int i;
   gra = new ArrayList<Grass>();
-  for(i = 0; i<; i++)
+  for(i = 0; i< 20; i++)
   {
-    gra.add(new Grass(width + 10*i, width + (10*i)+10));
+    gra.add(new Grass((10*i), (10*i)));
   }
   size(1000, 800);
   background(255);
@@ -59,11 +61,11 @@ void draw()
   d1.render(dr);
   n1.render(nr);
   
-  for(i = 0; i < 50; i++)
+  for(i = 0; i < gra.size()-1; i++)
   {
     Grass grass = gra.get(i);
     grass.update();
     grass.render();
- 
   }
+  image(sassy, width/2, height/1.3);
 }
