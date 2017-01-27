@@ -46,6 +46,21 @@ class Sky
     rect(this.w1, 0, this.w2, height/1.3);
     fill(sphere);
     ellipse(this.cent + 200, this.h, r, r);
+    int timer = second() - start;
+    if(timer % 10 == 0)
+    {
+      x = 1;
+    }
+    if(count == 3 && timer % 10 == 0)
+    {
+       count = 0;
+    }
+    if(x == 1)
+    {
+       count = count + 1;
+       x = 0;
+    }
+    image(sassy[count], width/8, height/3);
   }
 
 }

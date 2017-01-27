@@ -35,9 +35,6 @@ void setup()
   {
     sassy[i] = loadImage( "Sassy" + i + ".png" );   // make sure images "0.jpg" to "11.jpg" exist
   }
-  /*sassy = loadImage("Sassy1.png");
-  sassy2 = loadImage("Sassy2.png");
-  sassy3 = loadImage("Sassy3.png");*/
   int i;
   gra = new ArrayList<Grass>();
   for(i = 0; i< 20; i++)
@@ -61,7 +58,7 @@ void setup()
 void draw()
 {
   int timer = second() - start;
-  int i;
+  int i, x = 0;
   fill(#126F11);
   noStroke();
   rect(0, height/1.30, width, height);
@@ -78,13 +75,18 @@ void draw()
     grass.update();
     grass.render();
   }
-  if(count == 3 && timer % 1 == 0)
-   {
-      count = 0;
-   }
-   if(timer % 2 == 0)
-   {
+  if(timer % 15 == 0)
+  {
+    x = 1;
+  }
+  if(count == 3 && timer % 15 == 0)
+  {
+     count = 0;
+  }
+  if(x == 1)
+  {
      count = count + 1;
-   }
-   image(sassy[count], width/8, height/3);
+     x = 0;
+  }
+  image(sassy[count], width/8, height/3);
 }
