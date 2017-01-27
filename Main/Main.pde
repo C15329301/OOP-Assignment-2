@@ -7,10 +7,10 @@
    
 PShape gras;
 
-PImage sassy = loadImage("sassy1.png");
-
 color n = color(76, 14, 119);
 color d = color(45, 86, 233);
+
+int start;
 
 color Sun = color(255);
 color Moon = color(256, 223, 0);
@@ -18,6 +18,7 @@ color Moon = color(256, 223, 0);
 ArrayList<Grass> gra;
 
 int x=0;
+PImage[] sassy = new PImage[4];
 
 float w1;
 float w2;
@@ -28,6 +29,14 @@ Sky n1, d1;
 
 void setup()
 {
+  start = second();
+  for ( int i = 0; i< sassy.length; i++ )
+  {
+    sassy[i] = loadImage( "Sassy" + i + ".png" );   // make sure images "0.jpg" to "11.jpg" exist
+  }
+  /*sassy = loadImage("Sassy1.png");
+  sassy2 = loadImage("Sassy2.png");
+  sassy3 = loadImage("Sassy3.png");*/
   int i;
   gra = new ArrayList<Grass>();
   for(i = 0; i< 20; i++)
@@ -50,7 +59,9 @@ void setup()
 
 void draw()
 {
+  int timer = second() - start;
   int i;
+  int count = 0;
   fill(#126F11);
   noStroke();
   rect(0, height/1.30, width, height);
@@ -67,5 +78,14 @@ void draw()
     grass.update();
     grass.render();
   }
-  image(sassy, width/2, height/1.3);
+   if(timer % 1 == 0)
+   {
+     image(sassy[count], width/4, height/3);
+     count = count + 1;
+   }
+   if(count == 3 && timer % 1 == 0)
+   {
+      count = 0;
+   }
+   
 }
