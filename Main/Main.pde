@@ -10,6 +10,7 @@ PShape gras;
 color n = color(76, 14, 119);
 color d = color(45, 86, 233);
 
+int count = 0;
 int start;
 
 color Sun = color(255);
@@ -61,7 +62,6 @@ void draw()
 {
   int timer = second() - start;
   int i;
-  int count = 0;
   fill(#126F11);
   noStroke();
   rect(0, height/1.30, width, height);
@@ -78,14 +78,13 @@ void draw()
     grass.update();
     grass.render();
   }
-   if(timer % 1 == 0)
-   {
-     image(sassy[count], width/4, height/3);
-     count = count + 1;
-   }
-   if(count == 3 && timer % 1 == 0)
+  if(count == 3 && timer % 1 == 0)
    {
       count = 0;
    }
-   
+   if(timer % 2 == 0)
+   {
+     count = count + 1;
+   }
+   image(sassy[count], width/8, height/3);
 }
