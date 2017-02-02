@@ -5,7 +5,7 @@
    Object Orientated Programing
    Project 2                    */
    
-PShape gras;
+boolean showImage = false;
 
 color n = color(76, 14, 119);
 color d = color(45, 86, 233);
@@ -26,14 +26,16 @@ float w2;
 
 float nr, dr;
 
+Path p1;
+
 Sky n1, d1;
+int timer = 0;
 
 void setup()
 {
-  start = second();
   for ( int i = 0; i< sassy.length; i++ )
   {
-    sassy[i] = loadImage( "Sassy" + i + ".png" );   // make sure images "0.jpg" to "11.jpg" exist
+    sassy[i] = loadImage( "Sassy" + i + ".png" );
   }
   int i;
   gra = new ArrayList<Grass>();
@@ -46,8 +48,10 @@ void setup()
   w1 = 0;
   w2 = 1000;
   
-  d1 = new Sky(0, width, d, 100);
-  n1 = new Sky(width, 2*width, n, 500);
+  d1 = new Sky(0, 1000, d, width/2);
+  n1 = new Sky(1000, 2000, n, width/2);
+  
+  p1 = new Path();
   
   dr = random(150,200);
   nr = random(50,100);
@@ -57,7 +61,8 @@ void setup()
 
 void draw()
 {
-  int timer = second() - start;
+  d1.render(dr);
+  n1.render(nr);
   int i, x = 0;
   fill(#126F11);
   noStroke();
@@ -66,8 +71,6 @@ void draw()
   n1.update(Sun);
   d1.update(Moon);
   
-  d1.render(dr);
-  n1.render(nr);
   
   for(i = 0; i < gra.size()-1; i++)
   {
@@ -75,6 +78,7 @@ void draw()
     grass.update();
     grass.render();
   }
+  timer++;
   if(timer % 15 == 0)
   {
     x = 1;
@@ -87,6 +91,21 @@ void draw()
   {
      count = count + 1;
      x = 0;
+     
   }
+   
+  int path = 0;
+
+switch(path) {
+  case 0: 
+    image(sassy[count], width/8, height/3);
+    break;
+  case 1: 
+    image(sassy[count], width/8, height/3);
+    break;
+  case 2:
+    image(sassy[count], width/8, height/3);
+    break;
+}
   image(sassy[count], width/8, height/3);
 }

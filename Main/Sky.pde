@@ -8,6 +8,7 @@ class Sky
   float w2;
   float r;
   float cent;
+  
   Sky(float x, float x1, color c, float cent)
   {
     this.c = c;
@@ -20,22 +21,21 @@ class Sky
   
   void update(color sphere)
   { 
-    fill(this.c);
+      fill(c);
       this.sphere = sphere;
-      if(w1 > 0)
+      if(w1 >= 0)
       {
-        this.w1 = w1 - speed;
+        w1 = w1 - speed;
       }
-      if(w2 > 0)
+      if(w2 >= 0)
       {
-        this.w2 = w2 - speed;
-        this.w1 = w1 - speed;
-        this.cent = w1 + 400;
+        w2 = w2 - speed;
+        cent = w2 - 700;
       }
-      if(w2 < 1)
+      if(w2 <= 0)
       {
-        this.w1 = 1000;
-        this.w2 = 2000;
+        this.w1 =+ 1000;
+        this.w2 =+ 2000;
       }
   }
   
@@ -43,24 +43,10 @@ class Sky
   {
     this.r = r;
     fill(this.c);
-    rect(this.w1, 0, this.w2, height/1.3);
+    rect(w1, 0, w2, height/1.3);
     fill(sphere);
     ellipse(this.cent + 200, this.h, r, r);
-    int timer = second() - start;
-    if(timer % 10 == 0)
-    {
-      x = 1;
-    }
-    if(count == 3 && timer % 10 == 0)
-    {
-       count = 0;
-    }
-    if(x == 1)
-    {
-       count = count + 1;
-       x = 0;
-    }
-    image(sassy[count], width/8, height/3);
+
   }
 
 }
