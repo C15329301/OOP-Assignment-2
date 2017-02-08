@@ -196,7 +196,7 @@ void draw()
     }
     if (goodguys1 == true)
     {
-      f2.display(700, 0);
+      f2.display(740, 0);
       f2.update();
     }
     if (p == 0)
