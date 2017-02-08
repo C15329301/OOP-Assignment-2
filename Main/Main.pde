@@ -128,18 +128,6 @@ void draw()
     m1.detect();
     break;
   case 1: 
-    if(score == 10)
-    {
-      speed = 12;
-    }
-    if(score == 20)
-    {
-      speed = 15;
-    }
-    if(score == 30)
-    {
-      speed = 18;
-    }
     d1.render(dr);
     n1.render(nr);
     d1.rainbow();
