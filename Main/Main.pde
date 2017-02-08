@@ -11,6 +11,7 @@ color d = color(45, 86, 233);
 int gameState;
 
 int count = 0;
+float r;
 int start;
 int p = 0;
 float div = 2.5;
@@ -171,11 +172,12 @@ void draw()
     if (timer % 200  == 0)
     {
       badguys = true;
+      r = random(0, 10);
 
     }
     if (badguys == true)
     {
-      float r = random(0, 10);
+      
       s1.display(r);
       s1.update();
     }

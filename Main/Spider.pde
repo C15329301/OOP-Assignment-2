@@ -1,6 +1,6 @@
 class Spider
 {
-  float x, y;
+  float x, y, flag, dect;
  Spider(float x_, float y_)
  {
    this.x = x_;
@@ -12,19 +12,21 @@ class Spider
     {
       this.x = x - speed/2;
     }
-    else
+    if(x == 0)
     {
-      if(flag == 0)
+      this.x = x + width;
+    }
+   if(this.x == width/8 + 120 && this.dect == gameState)
+    {
+      if(dect == 0)
       {
-        goodguys1 = false;
+         exit();
       }
-      else
+      if(dect == 1)
       {
-        goodguys = false;
+        
+        exit();
       }
-      
-      this.x = width;
-      println(2);
     }
 
       
@@ -34,14 +36,16 @@ class Spider
   }
   void display(float f)
   {
-    flag = f;
+    this.flag = f;
     if(flag<=5)
     {
       this.y = 650;
+      dect = 1;
     }
     else
     {
       this.y = 700;
+      dect = 0;
     }
     stroke(0);
     strokeWeight(2);
