@@ -46,7 +46,7 @@ class Menu
         if(mousePressed)
         {
           //instructions
-          
+          option = 2;
           tint(255);
         }
       }

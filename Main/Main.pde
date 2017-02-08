@@ -20,6 +20,7 @@ color Sun = color(255);
 color Moon = color(256, 223, 0);
 
 int score = 0;
+int lives = 2;
 
 PShape star;
 PShape spider;
@@ -34,21 +35,18 @@ Star star1;
 Spider s1;
 Food f1, f2;
 
-ArrayList<Grass> gra;
 
 PImage[] sassy = new PImage[4];
 PImage menu;
+PImage Instruc;
 
 float w1;
 float w2;
 
-float yImg = width/8;
 float sped = 0.5;
-int flag = 0;
+float flag = 0;
 
-PVector location;
-PVector velocity;
-
+float f;
 
 
 float nr, dr;
@@ -67,17 +65,13 @@ void setup()
   smooth();
 
   menu = loadImage("Background.jpg");
+  Instruc = loadImage("Instructions.jpg");
 
   for ( int i = 0; i< sassy.length; i++ )
   {
     sassy[i] = loadImage( "Sassy" + i + ".png" );
   }
-  int i;
-  gra = new ArrayList<Grass>();
-  for (i = 0; i< 20; i++)
-  {
-    gra.add(new Grass((10*i), (10*i)));
-  }
+
   size(1000, 800);
   background(255);
   w1 = 0;
@@ -121,6 +115,10 @@ boolean checkKey(int k)
 
 void draw()
 {
+  if (checkKey('m'))
+    {
+      option = 0;
+    }
   switch(option) 
   {
   case 0: 
@@ -132,7 +130,7 @@ void draw()
     n1.render(nr);
     d1.rainbow();
     n1.rainbow();
-    int i, x = 0;
+    int x = 0;
     fill(#126F11);
     noStroke();
     rect(0, height/1.30, width, height);
@@ -146,12 +144,6 @@ void draw()
     d1.update(Moon);
 
 
-    for (i = 0; i < gra.size()-1; i++)
-    {
-      Grass grass = gra.get(i);
-      grass.update();
-      grass.render();
-    }
     timer++;
     if (timer % 15 == 0)
     {
@@ -179,11 +171,12 @@ void draw()
     if (timer % 200  == 0)
     {
       badguys = true;
+
     }
     if (badguys == true)
     {
-
-      s1.display();
+      float r = random(0, 10);
+      s1.display(r);
       s1.update();
     }
     if (timer % 100  == 0)
@@ -218,5 +211,14 @@ void draw()
     text("Score: " + score, 40, 40);
     image(sassy[count], width/8, height/div);
     break;
+    case 2:
+      image(Instruc, 0, 0);
+      fill(125);
+      rect(width/4, height/4, width/2, height/2);
+      fill(0);
+      textSize(70);
+      text("Instructions", width/4 + 30, height/4 -40);
+      textSize(30);
+      text("Collect the Sassy food packages\nWatch out for the Spiders",width/4 + 30, height/4 +40);
   }
 }

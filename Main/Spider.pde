@@ -6,23 +6,43 @@ class Spider
    this.x = x_;
    this.y = y_;
  }
-  void update()
+ void update()
   {
     if(x > 0)
     {
-      x = x - speed/4;
-      println(1);
+      this.x = x - speed/2;
     }
     else
     {
+      if(flag == 0)
+      {
+        goodguys1 = false;
+      }
+      else
+      {
+        goodguys = false;
+      }
       
-      badguys = false;
-      x = width;
+      this.x = width;
       println(2);
     }
+
+      
+    
+    
+    
   }
-  void display()
+  void display(float f)
   {
+    flag = f;
+    if(flag<=5)
+    {
+      this.y = 650;
+    }
+    else
+    {
+      this.y = 700;
+    }
     stroke(0);
     strokeWeight(2);
     fill(0);
